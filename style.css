@@ -1,0 +1,291 @@
+body{
+    background-color: #b7d2fc;
+    margin: 0px;
+}
+
+/*-------------MENU--------------*/
+.menu {
+    background-color: #9c6396;
+    padding: 0px 0px;
+}
+
+#ulMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.menu li:hover {
+    background-color: #734a6f;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 20px;
+    display: block;
+}
+
+.menu ul li:hover ul {
+    display: block;
+}
+
+.menu ul ul {
+    display: none;
+    position: absolute;
+    background-color: #9c6396;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    width: 110px;
+}
+
+.menu .producto {
+    display: block;
+}
+
+.menu #perfil{
+    float: right;
+}
+
+.menu ul ul li a {
+    padding: 10px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+#ulSubmenu {
+    display: none;
+}
+
+.menu .submenu:hover #ulSubmenu {
+    display: block;
+}
+
+.menu .producto:hover {
+    background-color: #734a6f;
+}
+
+
+/*--------------TABLA-------------------*/
+
+table{
+    width: 80%;
+    margin: 0 auto;
+}
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+tr{
+    height: 50px;
+}
+th{
+    background-color: #a0c3fd;
+}
+td{
+    text-align: center;
+}
+td:hover{
+    background-color: #a9c2ef;
+}
+
+input, textarea{
+    font-family: "Times New Roman";
+}
+
+
+
+/*----------------BOTONES-------------------*/
+
+.funcionalidad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button, input[type="submit"]{
+    width: fit-content;
+    height: fit-content;
+    background-color: #9c6396;
+    color: white;
+    border: 1px solid;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #734a6f;
+}
+a {
+    text-decoration: none;
+}
+#funcCarrito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#funcCarrito button {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+}
+#funcCarrito span {
+    margin: 0 10px; /* Espacio entre los botones y la cantidad */
+}
+
+
+
+
+
+/*----------------OTROS ELEMENTOS----------------*/
+h1, h2, h3{
+    text-align: center;
+}
+label{
+    margin-left: 10px;
+}
+#totalCarrito{
+    text-align: center;
+    font-size: larger;
+}
+.imgPortada{
+    width: 60px;
+    height: 100px;
+}
+
+
+
+/*------------------RESPONSIVE------------------*/
+@media (max-width: 520px) {
+    button {
+        text-decoration: none;
+        align-items: center;
+        display: inline-block;
+    }
+    table {
+        margin: 0 auto;
+        width: calc(100% - 20px);
+    }
+    .menu ul {
+        display: flex;
+        flex-direction: column;
+    }
+    .menu ul li {
+        display: block;
+        margin: 0;
+        text-align: center; /* Centrar el texto */
+        border: 1px solid #734a6f; /* Agregar bordes */
+    }
+}
+
+/*--------------FORMULARIO--------------*/
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+input{
+    width: 200px;
+    float: right;
+    margin-left: 5px;
+}
+input[type=submit]{
+    float: none;
+    margin: 0 auto;
+}
+label{
+    float: left;
+}
+#labelRecuerdame{
+    float: none;
+}
+input[type="checkbox"] {
+    width: auto;
+    float: none;
+}
+
+
+/*----------------VISUALIZACIÓN CLIENTES-------------*/
+/*----------------LIBRERÍA Y AUTORES-------------*/
+.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.contenedor .rs {
+    width: calc(30% - 20px); /* Para que entren 3 libros en una fila */
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(213, 229, 255);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.contenedor .rs .imgPortada {
+    width: 100px;
+    height: 170px;
+}
+.contenedor .rs h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.contenedor .rs a {
+    color: black;
+    text-decoration: underline;
+}
+#precio{
+    font-size: larger;
+    color: #734a6f;
+    font-weight: bold;
+}
+
+
+
+/*----------------VISULIZACIÓN DE CARRITO----------------*/
+.carrito {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.libroCarrito {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: calc(47% - 40px); /* Ajusta el ancho para que entren 2 libros en una fila */
+    background-color: rgb(213, 229, 255);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.libroCarrito .imgPortada {
+    width: 100px;
+    height: 170px;
+}
+.libroCarrito .datosLibro {
+    flex: 1;
+    padding: 10px;
+}
+.libroCarrito .datosLibro h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+.libroCarrito .datosLibro p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+

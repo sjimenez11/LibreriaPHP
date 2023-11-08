@@ -1,0 +1,93 @@
+DROP DATABASE libreria;
+
+CREATE DATABASE libreria;
+
+USE libreria;
+
+
+CREATE TABLE usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nickname VARCHAR(15) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    contrasenia VARCHAR(100) NOT NULL,
+    admin tinyint(1) NOT NULL DEFAULT 0,
+    codigoCookie varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+    caducidadCodigoCookie timestamp NULL DEFAULT NULL
+);
+
+INSERT INTO usuario (nickname, nombre, email, contrasenia, admin) VALUES
+    ("sara9", "Sara", "sarajim@gmail.com", "sara", 1),
+    ("dp", "Delpi", "delpi@gmail.com", "dp", 0),
+    ("albert", "Albert", "albert@gmail.com", "abc", 0),
+    ("abc", "abc", "abc@gmail.com", "abc", 0),
+    ("lud", "Ludwig", "lud@gmail.com", "abc", 0),
+    ("hawk", "Hawke", "hawke@gmail.com", "abc", 0)
+;
+
+CREATE TABLE autor (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50),
+    biografia TEXT
+);
+
+INSERT INTO autor (nombre, nacionalidad, biografia) VALUES
+    ("Stephen King", "estadounidense", "Escritor de novelas de terror, ficción sobrenatural, misterio, ciencia ficción y literatura fantástica."),
+    ("Paula Hawkins", "británica", "Periodista y escritora de las novelas La chica del tren, Escrito en el agua y A fuego lento."),
+    ("Jennifer L. Armentrout", "estadounidense", "Escritora de romance contemporáneo, new adult y fantasía. Varias de sus obras han aparecido en la lista de los más vendidos del The New York Times."),
+    ("Donna Leon", "estadounidense", "Profesora y escritora considerada una de las grandes damas de la novela criminal actual."),
+    ("Elísabet Benavent", "española", "Escritora, conocida en redes sociales como Beta Coqueta, que se ha posicionado como una de las voces más destacadas de la literatura romántica en España"),
+    ("Camilo José Cela", "española", "Reconocido como uno de los escritores españoles más importantes del siglo XX. Destacó además como una figura pública de gran calado y también en su labor académica en la RAE.")
+;
+
+CREATE TABLE libro (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    isbn VARCHAR(13),
+    precio DOUBLE(4,2),
+    idAutor INT,
+    portada VARCHAR(100),
+    FOREIGN KEY (idAutor) REFERENCES autor(id) DELETE ON CASCADE
+);
+
+INSERT INTO libro (titulo, isbn, precio, idAutor, portada) VALUES
+    ("El resplandor", 9788490328729, 8.21, 1, "ElResplandor.jpg"),
+    ("La chica del tren", 9788408141471, 18.52, 2, "LaChicaDelTren.jpg"),
+    ("De sangre y cenizas", 9788417854317, 18.95, 3, "DeSangreYCenizas.jpg"),
+    ("It", 9788466345347, 17.05, 1, "It.jpg"),
+    ("Muerte en la Fenice", 9788432217487, 8.50, 4, "MuerteEnLaFenice.jpg"),
+    ("En los zapatos de Valeria", 9788490628973, 9.45, 5, "EnLosZapatosDeValeria.jpg"),
+    ("La familia de Pascual Duarte", 9788466349314, 10.40, 6, "LaFamiliaDePascualDuarte.jpg")
+;
+
+CREATE TABLE carrito (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT NOT NULL,
+    idLibro INT NOT NULL,
+    cantidad INT DEFAULT 1,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(id),
+    FOREIGN KEY (idLibro) REFERENCES libro(id)
+);
+
+CREATE TABLE pedido (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT NOT NULL,
+    fechaPedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    direccion VARCHAR(40),
+    codigoPostal INT,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(id)
+);
+
+
+CREATE TABLE detallesPedido (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idPedido INT NOT NULL,
+    idLibro INT NOT NULL,
+    cantidad INT NOT NULL,
+    precioUnitario DOUBLE(4,2),
+    FOREIGN KEY (idPedido) REFERENCES pedido(id),
+    FOREIGN KEY (idLibro) REFERENCES libro(id)
+);
+
+
